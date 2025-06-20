@@ -5,8 +5,9 @@ body {
   #f7f4ed 0%,   
   #e2e8e4 30%,     
   #d5e3dc 60%,     
-  #cbe2f0 100%     
+  #cbe2f0 100%,    
 );
+font-family:Arial, Helvetica, sans-serif;
 }
 
 #map {
