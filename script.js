@@ -35,7 +35,7 @@ map.on('click', function(event) {
             console.log(data);
             temperature = data.temperature;
             afficheTemperature.innerText = `La température à ${ville} est de ${temperature}`;
-            console.log(`La température à ${ville} est de ${temperature}`);
+            console.log(`La température à ${ville} est de ${temperature}`) ;
             
         })
         
