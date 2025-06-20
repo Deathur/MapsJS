@@ -3,6 +3,7 @@ let longitude;
 let ville;
 let temperature;
 let description;
+let wind;
 const afficheTemperature = document.querySelector('.ville');
 
 var map = L.map('map', {
@@ -42,7 +43,8 @@ map.on('click', function(event) {
                 console.log(data);
                 temperature = data.temperature;
                 description = data.description;
-                afficheTemperature.innerText = `La température à ${ville} est de ${temperature} le temps est ${description}`;
+                wind = data.wind;
+                afficheTemperature.innerText = `La température à ${ville} est de ${temperature} le temps est ${description} et le vent est de ${wind}`;
                 afficheTemperature.style.display = 'block';
                 console.log(`La température à ${ville} est de ${temperature}`); 
                 ville = "";
