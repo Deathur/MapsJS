@@ -28,24 +28,28 @@ map.on('click', function(event) {
     .then((response)=>response.json())
     .then((data)=>{
         console.log(data);
-        if (data.address.city) {
-            console.log(data.address.city);
+        if (data.address.hasOwnProperty("city")) {
             ville = data.address.city;
         }
-        if (data.address.village) {
-            console.log(data.address.village);
+        if (data.address.hasOwnProperty("village")) {
             ville = data.address.village;
         }
-        
-        fetch (`https://goweather.xyz/weather/${ville}`)
-        .then(response=>response.json())
-        .then(data=>{
-            console.log(data);
-            temperature = data.temperature;
-            afficheTemperature.innerText = `La température à ${ville} est de ${temperature}`;
-            afficheTemperature.style.display = 'block';
-            console.log(`La température à ${ville} est de ${temperature}`); 
-        })
+        if (ville !== "" || ville == undefined) {
+            fetch (`https://goweather.xyz/weather/${ville}`)
+            .then(response=>response.json())
+            .then(data=>{
+                console.log(data);
+                temperature = data.temperature;
+                afficheTemperature.innerText = `La température à ${ville} est de ${temperature}`;
+                afficheTemperature.style.display = 'block';
+                console.log(`La température à ${ville} est de ${temperature}`); 
+            })
+            ville = "";
+        }
+        else {
+            console.log("aucune ville");
+            
+        }
         
     })
 })
