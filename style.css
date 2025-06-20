@@ -1,3 +1,30 @@
+body {
+ height: 100vh;
+ background: linear-gradient(
+  135deg,
+  #f7f4ed 0%,   
+  #e2e8e4 30%,     
+  #d5e3dc 60%,     
+  #cbe2f0 100%     
+);
+}
+
 #map {
 height: 80vh;
+border: 3px solid black;
+border-radius: 10px;
+margin: 10px 20px;
 }
+
+.ville {
+    display: none;
+    justify-self: center;
+    justify-content: center;
+    text-align: center;
+    border: 2px solid ;
+    border-radius: 10px;
+    width: 400px;
+    padding: 10px;
+    margin: 20px auto; 
+}
+
