@@ -33,6 +33,11 @@ map.on('click', function(event) {
         if (data.address.hasOwnProperty("city")) {
             ville = data.address.city;
         }
+
+         if (data.address.hasOwnProperty("town")) {
+            ville = data.address.town;
+        }
+    
         if (data.address.hasOwnProperty("village")) {
             ville = data.address.village;
         }
