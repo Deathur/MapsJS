@@ -4,10 +4,18 @@ let ville;
 let temperature;
 const afficheTemperature = document.querySelector('.ville');
 
-var map = L.map('map').setView([47, 5], 5);
+var map = L.map('map', {
+  maxBounds: [
+    [-85, -180],
+    [85, 180]
+  ],
+  maxBoundsViscosity: 1.0 
+}).setView([47, 5], 5);
 
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
+    minZoom: 3,
+     noWrap: true,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
