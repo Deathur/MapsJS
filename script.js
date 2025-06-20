@@ -43,8 +43,9 @@ map.on('click', function(event) {
                 afficheTemperature.innerText = `La température à ${ville} est de ${temperature}`;
                 afficheTemperature.style.display = 'block';
                 console.log(`La température à ${ville} est de ${temperature}`); 
+                 ville = "";
             })
-            ville = "";
+           
         }
         else {
             console.log("aucune ville");
