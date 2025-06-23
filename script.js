@@ -1,3 +1,6 @@
+/**
+ * Initialisation des variables
+ */
 let latitude;
 let longitude;
 let ville = "";
