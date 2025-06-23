@@ -38,16 +38,13 @@ map.on('click', function(event) {
          */
         if (data.hasOwnProperty('address')) {
             if (data.address.city) {
-                console.log("city");
                 ville = data.address.city;
             }
             if (data.address.town) {
                 ville = data.address.town;
-                console.log("town");
             }
             if (data.address.village) {
                 ville = data.address.village;
-                console.log("village");
             }
             if (ville !== "" || ville == undefined) {
                 fetch (`https://goweather.xyz/weather/${ville}`)
@@ -56,6 +53,9 @@ map.on('click', function(event) {
                     temperature = data.temperature;
                     description = data.description;
                     wind = data.wind;
+                    /**
+                     * On affiche les informations de la ville correpondante en dessous
+                     */
                     afficheTemperature.innerText = `La température à ${ville} est de ${temperature} le temps est ${description} et le vent est de ${wind}`;
                     afficheTemperature.style.display = 'block';
                     console.log(`La température à ${ville} est de ${temperature}`);
