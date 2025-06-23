@@ -28,37 +28,37 @@ map.on('click', function(event) {
     console.log(event.latlng.lng);
     fetch (`https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`)
     .then((response)=>response.json())
-    .then((data)=>{    
-        if (data.address.hasOwnProperty('city')) {
-            console.log("city");
-            ville = data.address.city;
+    .then((data)=>{
+        if (data.hasOwnProperty('address')) {
+            if (data.address.city) {
+                console.log("city");
+                ville = data.address.city;
+            }
+            if (data.address.town) {
+                ville = data.address.town;
+                console.log("town");
+            }
+            if (data.address.village) {
+                ville = data.address.village;
+                console.log("village");
+            }
+            if (ville !== "" || ville == undefined) {
+                fetch (`https://goweather.xyz/weather/${ville}`)
+                .then(response=>response.json())
+                .then(data=>{
+                    console.log(data);
+                    temperature = data.temperature;
+                    description = data.description;
+                    wind = data.wind;
+                    afficheTemperature.innerText = `La température à ${ville} est de ${temperature} le temps est ${description} et le vent est de ${wind}`;
+                    afficheTemperature.style.display = 'block';
+                    console.log(`La température à ${ville} est de ${temperature}`);
+                    ville = "";
+                })
+            }
+            else {
+                console.log("aucune ville");
+            }
         }
-        if (data.address.hasOwnProperty('town')) {
-            ville = data.address.town;
-            console.log("town");
-        }
-        if (data.address.hasOwnProperty('village')) {
-            ville = data.address.village;
-            console.log("village");
-        }
-        if (ville !== "" || ville == undefined) {
-            fetch (`https://goweather.xyz/weather/${ville}`)
-            .then(response=>response.json())
-            .then(data=>{
-                console.log(data);
-                temperature = data.temperature;
-                description = data.description;
-                wind = data.wind;
-                afficheTemperature.innerText = `La température à ${ville} est de ${temperature} le temps est ${description} et le vent est de ${wind}`;
-                afficheTemperature.style.display = 'block';
-                console.log(`La température à ${ville} est de ${temperature}`);
-                ville = "";
-            })
-           
-        }
-        else {
-            console.log("aucune ville");
-        }
-        
     })
 })
