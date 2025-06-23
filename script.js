@@ -29,6 +29,7 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
  * Lorsqu'on clique sur un endroit de la map
  */
 map.on('click', function(event) {
+    console.log(event);
     latitude = event.latlng.lat;
     longitude = event.latlng.lng;
     console.log(event.latlng.lat);
@@ -36,6 +37,8 @@ map.on('click', function(event) {
     fetch (`https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`)
     .then((response)=>response.json())
     .then((data)=>{
+        console.log(data);
+        
         /**
          * Vérification selon la taille de la ville + vérification des erreurs
          */
