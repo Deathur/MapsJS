@@ -5,7 +5,9 @@ let temperature;
 let description;
 let wind;
 const afficheTemperature = document.querySelector('.ville');
-
+/**
+ * Limiter le scroll sur plusieurs maps
+ */
 var map = L.map('map', {
   maxBounds: [
     [-85, -180],
@@ -20,7 +22,9 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
      noWrap: true,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
-
+/**
+ * Lorsqu'on clique sur un endroit de la map
+ */
 map.on('click', function(event) {
     latitude = event.latlng.lat;
     longitude = event.latlng.lng;
@@ -29,6 +33,9 @@ map.on('click', function(event) {
     fetch (`https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`)
     .then((response)=>response.json())
     .then((data)=>{
+        /**
+         * Vérification selon la taille de la ville + vérification des erreurs
+         */
         if (data.hasOwnProperty('address')) {
             if (data.address.city) {
                 console.log("city");
@@ -46,7 +53,6 @@ map.on('click', function(event) {
                 fetch (`https://goweather.xyz/weather/${ville}`)
                 .then(response=>response.json())
                 .then(data=>{
-                    console.log(data);
                     temperature = data.temperature;
                     description = data.description;
                     wind = data.wind;
@@ -56,6 +62,9 @@ map.on('click', function(event) {
                     ville = "";
                 })
             }
+            /**
+             * Cas où on sélectionne aucune ville (exemple: en plein océan)
+             */
             else {
                 console.log("aucune ville");
             }
