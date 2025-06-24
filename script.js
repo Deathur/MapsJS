@@ -9,7 +9,7 @@ let description;
 let wind;
 const afficheTemperature = document.querySelector('.ville');
 /**
- * Limiter le scroll sur plusieurs maps
+ * Limiter le déplacement hozizontal de la map
  */
 var map = L.map('map', {
   maxBounds: [
@@ -22,7 +22,7 @@ var map = L.map('map', {
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     minZoom: 3,
-     noWrap: true,
+    noWrap: true,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 /**
@@ -64,7 +64,7 @@ map.on('click', function(event) {
                      */
                     afficheTemperature.innerText = `La température à ${ville} est de ${temperature} le temps est ${description} et le vent est de ${wind}`;
                     afficheTemperature.style.display = 'block';
-                    console.log(`La température à ${ville} est de ${temperature}`);
+                    console.log(`La température à ${ville} est de ${temperature} le temps est ${description} et le vent est de ${wind}`);
                     ville = "";
                 })
             }
